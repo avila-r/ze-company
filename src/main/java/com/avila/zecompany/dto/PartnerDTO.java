@@ -1,10 +1,8 @@
 package com.avila.zecompany.dto;
-import com.avila.zecompany.model.Geography;
+import com.avila.zecompany.model.GeoData;
 import lombok.Builder;
-import lombok.Getter;
 import java.util.List;
 
-@Getter
 @Builder
 public record PartnerDTO (
         Long id,
@@ -14,5 +12,5 @@ public record PartnerDTO (
         GeographyDTO coverageArea,
         GeographyDTO address
 ) {
-    @Builder public record GeographyDTO(Geography.GeoType type, List<?> coordinates){}
+    @Builder public record GeographyDTO(GeoData.GeoType type, List<?> coordinates){}
 }
