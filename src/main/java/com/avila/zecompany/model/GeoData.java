@@ -8,7 +8,7 @@ import java.util.List;
 
 @NoArgsConstructor @AllArgsConstructor @Builder
 @Entity @Table(name = "geo_data")
-public class Geography {
+public class GeoData {
 
     @Converter @Component
     private record DataConverter(@Autowired ObjectMapper objectMapper) implements AttributeConverter<List<?>, String> {
@@ -40,10 +40,10 @@ public class Geography {
     private Partner partner;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type")
+    @Column(name = "type", nullable = false)
     private GeoType type;
 
     @Convert(converter = DataConverter.class)
-    @Column(name = "coordinates", columnDefinition = "jsonb")
+    @Column(name = "coordinates", columnDefinition = "jsonb", nullable = false)
     private List<?> coordinates;
 }
