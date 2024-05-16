@@ -1,11 +1,21 @@
 package com.avila.zecompany.model;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data @Builder
+@Builder @AllArgsConstructor @NoArgsConstructor
+@Entity @Table(name = "partners")
 public class Partner {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "trading_name", nullable = false)
     private String tradingName;
+
+    @Column(name = "owner_name", nullable = false)
     private String ownerName;
+
+    @Column(name = "document", nullable = false, unique = true)
     private Long document;
 }
