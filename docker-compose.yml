@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  zecompany-db:
+    build:
+      context: ./database
+    container_name: zecompany-db
+    image: zecompany-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: zecompany-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
