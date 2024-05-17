@@ -65,12 +65,15 @@ public class PartnerService {
                 .toList();
     }
 
+    public PartnerResponseDTO getPartner(Long id){
+        return build(repository.findById(id).orElseThrow()); // TODO: Custom exception
+    }
+
     @Transactional public PartnerResponseDTO insertNewPartner(PartnerRequestDTO request){
         return build(
                 repository.save(build(request)),
-                geoDataService.saveAreaByPartnerRequest(request, build(request)),
-                geoDataService.saveAddressPartnerRequest(request, build(request))
+                geoDataService.saveAreaByPartnerRequest(request, repository.findByDocument(build(request).getDocument()).orElseThrow()), // TODO: Custom exception
+                geoDataService.saveAddressPartnerRequest(request, repository.findByDocument(build(request).getDocument()).orElseThrow()) // TODO: Custom exception
         );
     }
-
 }
