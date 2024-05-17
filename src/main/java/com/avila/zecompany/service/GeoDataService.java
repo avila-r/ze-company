@@ -33,7 +33,7 @@ public class GeoDataService {
     }
 
     @Transactional public GeoData saveAddressPartnerRequest(@NotNull PartnerRequestDTO request, @NotNull Partner partner){
-        if (request.address().type().equals("MultiPolygon")) return repository.save(
+        if (request.coverageArea().type().equals("MultiPolygon")) return repository.save(
                 GeoData.builder()
                         .partner(partner)
                         .type(GeoData.GeoType.AREA)
