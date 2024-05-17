@@ -4,5 +4,5 @@ import org.springframework.data.repository.ListCrudRepository;
 import java.util.Optional;
 
 public interface GeoDataRepository extends ListCrudRepository<GeoData, Long> {
-    Optional<GeoData> findByPartnerId(Long id);
+    Optional<GeoData> findByPartnerIdAndType(Long id, GeoData.GeoType type);
 }
