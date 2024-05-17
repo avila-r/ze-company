@@ -2,11 +2,12 @@ package com.avila.zecompany.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import lombok.*;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
-@NoArgsConstructor @AllArgsConstructor @Builder
+@NoArgsConstructor @AllArgsConstructor @Builder @Getter
 @Entity @Table(name = "geo_data")
 public class GeoData {
 
@@ -18,7 +19,7 @@ public class GeoData {
         }
 
         @Override @SneakyThrows
-        public List<?> convertToEntityAttribute(String data) {
+        public List<?> convertToEntityAttribute(@NotNull String data) {
             return objectMapper.readValue(data, objectMapper.getTypeFactory().constructCollectionType(List.class, Object.class));
         }
     }
@@ -44,6 +45,6 @@ public class GeoData {
     private GeoType type;
 
     @Convert(converter = DataConverter.class)
-    @Column(name = "coordinates", columnDefinition = "jsonb", nullable = false)
+    @Column(name = "coordinates", nullable = false)
     private List<?> coordinates;
 }
