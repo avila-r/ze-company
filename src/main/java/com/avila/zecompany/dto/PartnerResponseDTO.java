@@ -1,6 +1,9 @@
 package com.avila.zecompany.dto;
+import lombok.Builder;
 
-public record PartnerRequestDTO (
+@Builder
+public record PartnerResponseDTO (
+        Long id,
         String tradingName,
         String ownerName,
         String document,
