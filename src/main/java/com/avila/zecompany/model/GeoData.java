@@ -2,7 +2,6 @@ package com.avila.zecompany.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import lombok.*;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
@@ -19,7 +18,7 @@ public class GeoData {
         }
 
         @Override @SneakyThrows
-        public List<?> convertToEntityAttribute(@NotNull String data) {
+        public List<?> convertToEntityAttribute(String data) {
             return objectMapper.readValue(data, objectMapper.getTypeFactory().constructCollectionType(List.class, Object.class));
         }
     }
