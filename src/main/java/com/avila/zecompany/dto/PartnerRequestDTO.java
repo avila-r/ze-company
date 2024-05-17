@@ -5,7 +5,6 @@ import java.util.List;
 
 @Builder
 public record PartnerDTO (
-        Long id,
         String tradingName,
         String ownerName,
         Long document,
