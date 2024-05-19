@@ -2,6 +2,7 @@ package com.avila.zecompany.service;
 import com.avila.zecompany.dto.GeoDataDTO;
 import com.avila.zecompany.dto.PartnerRequestDTO;
 import com.avila.zecompany.dto.PartnerResponseDTO;
+import com.avila.zecompany.exception.partner.PartnerNotFoundException;
 import com.avila.zecompany.model.GeoData;
 import com.avila.zecompany.model.Partner;
 import com.avila.zecompany.repository.PartnerRepository;
@@ -43,7 +44,7 @@ public class PartnerService {
 
     private PartnerResponseDTO build(@NotNull Partner partner, GeoData area, GeoData address){
         return PartnerResponseDTO.builder()
-                .id(repository.findByDocument(partner.getDocument()).orElseThrow().getId()) // TODO: Custom exception
+                .id(repository.findByDocument(partner.getDocument()).orElseThrow(PartnerNotFoundException::new).getId())
                 .tradingName(partner.getTradingName())
                 .ownerName(partner.getOwnerName())
                 .document(partner.getDocument())
@@ -66,14 +67,14 @@ public class PartnerService {
     }
 
     public PartnerResponseDTO getPartner(Long id){
-        return build(repository.findById(id).orElseThrow()); // TODO: Custom exception
+        return build(repository.findById(id).orElseThrow(PartnerNotFoundException::new));
     }
 
     @Transactional public PartnerResponseDTO insertNewPartner(PartnerRequestDTO request){
         return build(
                 repository.save(build(request)),
-                geoDataService.saveAreaByPartnerRequest(request, repository.findByDocument(build(request).getDocument()).orElseThrow()), // TODO: Custom exception
-                geoDataService.saveAddressPartnerRequest(request, repository.findByDocument(build(request).getDocument()).orElseThrow()) // TODO: Custom exception
+                geoDataService.saveAddressByPartnerRequest(request, repository.findByDocument(build(request).getDocument()).orElseThrow(PartnerNotFoundException::new)),
+                geoDataService.saveAreaPartnerRequest(request, repository.findByDocument(build(request).getDocument()).orElseThrow(PartnerNotFoundException::new))
         );
     }
 }
