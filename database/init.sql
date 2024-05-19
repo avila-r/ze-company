@@ -11,5 +11,5 @@ create table if not exists geo_data (
     id serial primary key,
     partner_id bigint not null references partners(id),
     type varchar(15),
-    coordinates varchar(255)
+    coordinates text
 );
