@@ -74,7 +74,7 @@ public class PartnerService {
         return build(
                 repository.save(build(request)),
                 geoDataService.saveAddressByPartnerRequest(request, repository.findByDocument(build(request).getDocument()).orElseThrow(PartnerNotFoundException::new)),
-                geoDataService.saveAreaPartnerRequest(request, repository.findByDocument(build(request).getDocument()).orElseThrow(PartnerNotFoundException::new))
+                geoDataService.saveAreaByPartnerRequest(request, repository.findByDocument(build(request).getDocument()).orElseThrow(PartnerNotFoundException::new))
         );
     }
 }

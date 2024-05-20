@@ -34,7 +34,7 @@ public class GeoDataService {
         else throw new InvalidGeoDataTypeException();
     }
 
-    @Transactional public GeoData saveAreaPartnerRequest(@NotNull PartnerRequestDTO request, @NotNull Partner partner){
+    @Transactional public GeoData saveAreaByPartnerRequest(@NotNull PartnerRequestDTO request, @NotNull Partner partner){
         if (request.coverageArea().type().equals("MultiPolygon")) return repository.save(
                 GeoData.builder()
                         .partner(partner)
