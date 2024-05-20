@@ -1,5 +1,5 @@
 > [!NOTE]
-> Although the repository is named as 'Zé Company', the application was developed just for educational purposes to solve the challenge proposed [here](#https://github.com/ab-inbev-ze-company/ze-code-challenges/blob/master/backend.md) and is not intended for commercial use.
+> Although the repository is named as 'Zé Company', the application was developed just for educational purposes to solve the challenge proposed at description and is not intended for commercial use.
 
 # 🌱 Zé Company, a RESTful API built-in Spring Boot.
 
